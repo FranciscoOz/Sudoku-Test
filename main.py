@@ -18,3 +18,4 @@ for i in range(9):
             else:
                 print(str(tablero_principal[i][j]) + " ", end="")
 #asasa
+######qwqwqwqwqwqwqwqwqw
