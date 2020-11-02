@@ -19,3 +19,5 @@ for i in range(9):
                 print(str(tablero_principal[i][j]) + " ", end="")
 #asasa
 ######qwqwqwqwqwqwqwqwqw
+##serwefwrkewr
+#sds
