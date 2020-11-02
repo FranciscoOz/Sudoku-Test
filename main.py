@@ -17,4 +17,4 @@ for i in range(9):
                 print(tablero_principal[i][j])
             else:
                 print(str(tablero_principal[i][j]) + " ", end="")
-dsdsdsd
+#asasa
