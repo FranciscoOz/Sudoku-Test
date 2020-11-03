@@ -1,4 +1,5 @@
 import random as random
+#Hola carebola
 
 #CREA TABLERO DE JUEGO 9X9 CON 0's
 tablero_principal = []
@@ -7,11 +8,13 @@ for i in range (9):
     for j in range (9):
         tablero_principal[i].append(0)
 
-#RELLENAMOS CON NUMEROS ALEATORIOS ALGUNAS CASILLAS SEGÚN CONTADOR
+#RELLENAMOS CON NUMEROS ALEATORIOS ALGUNAS CASILLAS SEGÚN CONTADOR Y CUMPLIENDO LAS REGLAS
 contador = 19
+Cumple = True
 for i in range (9):
   for j in range (9):
-    if contador!=0:
+    if tablero_principal[i][j]==tablero_principal[i+1][j+1] Cumpe
+    if contador!=0 and Cumple:
       tablero_principal[random.randrange(1,9)][random.randrange(1,9)]=random.randrange(1,9)
       contador-=1
 
