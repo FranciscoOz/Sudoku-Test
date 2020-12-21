@@ -1,68 +1,8 @@
-import random
-
 def Regla_1(valor):
     Cumple = False
-    if 0<valor and valor<=9:
+    if valor=="1" or valor=="2" or valor=="3" or valor=="4" or valor=="5" or valor=="6" or valor=="7" or valor=="8" or valor=="9":
         Cumple = True
     return Cumple
-
-def filaCuadrante(cuadrante):
-    if cuadrante == 1 or cuadrante == 2 or cuadrante == 3:
-        return [0, 1, 2]
-    elif cuadrante == 4 or cuadrante == 5 or cuadrante == 6:
-        return [3, 4, 5]
-    elif cuadrante == 7 or cuadrante == 8 or cuadrante == 9:
-        return [6, 7, 8]
-
-def columnaCuadrante(cuadrante):
-    if cuadrante == 1 or cuadrante == 4 or cuadrante == 7:
-        return [0, 1, 2]
-    elif cuadrante == 2 or cuadrante == 5 or cuadrante == 8:
-        return [3, 4, 5]
-    elif cuadrante == 3 or cuadrante == 6 or cuadrante == 9:
-        return [6, 7, 8]
-
-def RetornaInvertidos(posibles):
-    imposibles = []
-    if not (1 in posibles):
-        imposibles.append(1)
-    if not (2 in posibles):
-        imposibles.append(2)
-    if not (3 in posibles):
-        imposibles.append(3)
-    if not (4 in posibles):
-        imposibles.append(4)
-    if not (5 in posibles):
-        imposibles.append(5)
-    if not (6 in posibles):
-        imposibles.append(6)
-    if not (7 in posibles):
-        imposibles.append(7)
-    if not (8 in posibles):
-        imposibles.append(8)
-    if not (9 in posibles):
-        imposibles.append(9)
-    return imposibles
-
-def RetornaPosiblesVertical(tabla, fila, columna):
-    disponibles = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    filas = len(tabla)
-    for i in range(filas):
-        if i != fila:
-            valor = tabla[i][columna]
-            if valor in disponibles:
-                disponibles.remove(valor)
-    return disponibles
-
-def RetornaPosiblesHorizontal(tabla, fila, columna):
-    disponibles = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    columnas = len(tabla[0])
-    for i in range(columnas):
-        if i != columna:
-            valor = tabla[fila][i]  # valor que hay asignado
-            if valor in disponibles:  # si el valor que hemos leido esta en la lista
-                disponibles.remove(valor)  # lo borramos de la lista ya que no disponible
-    return disponibles
 
 def RetornaCuadrante(fila, columna):
     if fila <= 2 and columna <= 2:
@@ -84,8 +24,47 @@ def RetornaCuadrante(fila, columna):
     elif fila <= 8 and columna <= 8:
         return 9
 
+def filaCuadrante(cuadrante):
+    if cuadrante == 1 or cuadrante == 2 or cuadrante == 3:
+        return [0, 1, 2]
+    elif cuadrante == 4 or cuadrante == 5 or cuadrante == 6:
+        return [3, 4, 5]
+    elif cuadrante == 7 or cuadrante == 8 or cuadrante == 9:
+        return [6, 7, 8]
+
+def columnaCuadrante(cuadrante):
+    if cuadrante == 1 or cuadrante == 4 or cuadrante == 7:
+        return [0, 1, 2]
+    elif cuadrante == 2 or cuadrante == 5 or cuadrante == 8:
+        return [3, 4, 5]
+    elif cuadrante == 3 or cuadrante == 6 or cuadrante == 9:
+        return [6, 7, 8]
+
+
+
+def RetornaPosiblesVertical(tabla, fila, columna):
+    disponibles = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    filas = len(tabla)
+    for i in range(filas):
+        if i != fila:
+            valor = tabla[i][columna]
+            if valor in disponibles:
+                disponibles.remove(valor)
+    return disponibles
+
+def RetornaPosiblesHorizontal(tabla, fila, columna):
+    disponibles = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    columnas = len(tabla[0])
+    for i in range(columnas):
+        if i != columna:
+            valor = tabla[fila][i]  # valor que hay asignado
+            if valor in disponibles:  # si el valor que hemos leido esta en la lista
+                disponibles.remove(valor)  # lo borramos de la lista ya que no disponible
+    return disponibles
+
+
 def RetornaPosiblesCuadrante(tabla, fila, columna):
-    disponibles = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    disponibles = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
     cuadrante = RetornaCuadrante(fila, columna)
     minifilas = filaCuadrante(cuadrante)
     minicolumnas = columnaCuadrante(cuadrante)
@@ -100,134 +79,56 @@ def RetornaPosiblesCuadrante(tabla, fila, columna):
     tabla[fila][columna] = valorinicialenpuntoestudio  # volvemos a poner el valor inicial
     return disponibles
 
-def RetornaTotalPosibles(tabla, fila, columna):
-    lista1 = RetornaPosiblesVertical(tabla, fila, columna)
-    lista2 = RetornaPosiblesHorizontal(tabla, fila, columna)
-    lista3 = RetornaPosiblesCuadrante(tabla, fila, columna)
-    lista1 = RetornaInvertidos(lista1)
-    lista2 = RetornaInvertidos(lista2)
-    lista3 = RetornaInvertidos(lista3)
-    listatotal = lista1 + lista2 + lista3
-    listaimposibles = []
-    if 1 in listatotal:
-        listaimposibles.append(1)
-    if 2 in listatotal:
-        listaimposibles.append(2)
-    if 3 in listatotal:
-        listaimposibles.append(3)
-    if 4 in listatotal:
-        listaimposibles.append(4)
-    if 5 in listatotal:
-        listaimposibles.append(5)
-    if 6 in listatotal:
-        listaimposibles.append(6)
-    if 7 in listatotal:
-        listaimposibles.append(7)
-    if 8 in listatotal:
-        listaimposibles.append(8)
-    if 9 in listatotal:
-        listaimposibles.append(9)
-    listaposibles = RetornaInvertidos(listaimposibles)
-    return listaposibles
+# Actualizacion_1.5
 
-def RellenaInmediatos(tabla):
-    actuado = 0
-    filas = len(tabla)
-    columnas = len(tabla[0])
-    for i in range(filas):
-        for j in range(columnas):
-            if tabla[i][j] == 0:
-                posibles = RetornaTotalPosibles(tabla, i, j)
-                if len(posibles) == 1:
-                    tabla[i][j] = posibles[0]
-                    actuado = 1
-    return actuado
+def VerificaExistencia(archivo):
+    try:
+        with open(archivo, 'r') as f:
+            return True
+    except FileNotFoundError as e:
+        return False
+    except IOError as e:
+        return False
 
-def RetornaUnoDeLaLista(lista):
-    longitud = len(lista)
-    return lista[random.randint(0, longitud - 1)]
-
-def RellenaUnaCasillaCon2Posibles(tabla):
-    filas = len(tabla)
-    columnas = len(tabla[0])
-    for i in range(filas):
-        for j in range(columnas):
-            if tabla[i][j] == 0:  # casilla vacia
-                posibles = RetornaTotalPosibles(tabla, i, j)
-                if len(posibles) == 2:
-                    tabla[i][j] = RetornaUnoDeLaLista(posibles)
-                    return True
+def Resolver_cifra(sudoku):
+    encontrar = Encontrar_vacio(sudoku)
+    if not encontrar:
+        return True
+    else:
+        fila, col = encontrar
+    listNumeros=["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    for num in listNumeros:
+        if validar_cifra(sudoku, num, fila, col):
+            sudoku[fila][col] = num
+            if Resolver_cifra(sudoku):
+                return True
+            sudoku[fila][col] = "0"
     return False
 
-def RellenaUnaCasillaCon3Posibles(tabla):
-    filas = len(tabla)
-    columnas = len(tabla[0])
-    for i in range(filas):
-        for j in range(columnas):
-            if tabla[i][j] == 0:  # casilla vacia
-                posibles = RetornaTotalPosibles(tabla, i, j)
-                if len(posibles) == 3:
-                    tabla[i][j] = RetornaUnoDeLaLista(posibles)
-                    return True
+def Encontrar_vacio(sudoku):
+    for i in range(len(sudoku)):
+        for j in range(len(sudoku[0])):
+            if sudoku[i][j] == "0":
+                return i, j  # fila, columna
     return False
 
-def RellenaUnaCasillaCon4Posibles(tabla):
-    filas = len(tabla)
-    columnas = len(tabla[0])
-    for i in range(filas):
-        for j in range(columnas):
-            if tabla[i][j] == 0:  # casilla vacia
-                posibles = RetornaTotalPosibles(tabla, i, j)
-                if len(posibles) == 4:
-                    tabla[i][j] = RetornaUnoDeLaLista(posibles)
-                    return True
-    return False
+def validar_cifra(sudoku, num, fila, col):
+    #Comprobar fila y col
+    for i in range(9):
+        if sudoku[fila][i] == num and col != i:
+            return False
+        if sudoku[i][col] == num and fila != i:
+            return False
 
-def RellenaUnaCasillaCon5Posibles(tabla):
-    filas = len(tabla)
-    columnas = len(tabla[0])
-    for i in range(filas):
-        for j in range(columnas):
-            if tabla[i][j] == 0:  # casilla vacia
-                posibles = RetornaTotalPosibles(tabla, i, j)
-                if len(posibles) == 5:
-                    tabla[i][j] = RetornaUnoDeLaLista(posibles)
-                    return True
-    return False
+    # Casilla de verificación
+    casilla_x = col // 3
+    casilla_y = fila // 3
+    for i in range(casilla_y*3, casilla_y*3 + 3):
+        for j in range(casilla_x * 3, casilla_x*3 + 3):
+            if sudoku[i][j] == num and (i, j) != (fila, col):
+                return False
 
-def RellenaUnaCasillaCon6Posibles(tabla):
-    filas = len(tabla)
-    columnas = len(tabla[0])
-    for i in range(filas):
-        for j in range(columnas):
-            if tabla[i][j] == 0:  # casilla vacia
-                posibles = RetornaTotalPosibles(tabla, i, j)
-                if len(posibles) == 6:
-                    tabla[i][j] = RetornaUnoDeLaLista(posibles)
-                    return True
-    return False
-
-def RellenaUnaCasillaCon7Posibles(tabla):
-    filas = len(tabla)
-    columnas = len(tabla[0])
-    for i in range(filas):
-        for j in range(columnas):
-            if tabla[i][j] == 0:  # casilla vacia
-                posibles = RetornaTotalPosibles(tabla, i, j)
-                if len(posibles) == 7:
-                    tabla[i][j] = RetornaUnoDeLaLista(posibles)
-                    return True
-    return False
+    return True
 
 
-# def RellenaUnaCasillaX(tabla):
-#     filas = len(tabla)
-#     columnas = len(tabla[0])
-#     for i in range(filas):
-#         for j in range(columnas):
-#             if tabla[i][j] == 0:  # casilla vacia
-#                 posibles = RetornaTotalPosibles(tabla, i, j)
-#                 if len(posibles) == 2 or len(posibles) == 3 or len(posibles) == 4 or len(posibles) == 5 or len(posibles) == 6 or len(posibles) == 7:
-#                     tabla[i][j] = RetornaUnoDeLaLista(posibles)
-#                     return 1
-#     return 0
+
