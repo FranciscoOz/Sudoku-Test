@@ -234,6 +234,7 @@ def guardaPartida(matriz):
                 if i==nombre_total:
                     index=matriz_nombres_guardados.index(i)
             matriz_tableros_guardados[index]=matriz
+            IntroduceJSON()
         elif opcion=="2":
             guardaPartida(matriz)
         else:
