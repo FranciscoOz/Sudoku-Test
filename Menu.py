@@ -170,8 +170,19 @@ def Menu2(NameTotal,tab):
         print()
         return Menu2(NameTotal, tab)
 
-def continuaTablero(sudoku):
+def HayCeros(sudoku):
+    HayCeros = 0
+    for i in range(9):
+        for j in range(9):
+            if sudoku[i][j] == "0":
+                HayCeros = True
+    return HayCeros
 
+def continuaTablero(sudoku):
+    NoHaySolucion = False
+    if NoHaySolucion:
+        print("No hay solución :c ")
+        NoHaySolucion = True
     MuestraTablero(sudoku)
     print()
     print(Clr.YW+"◤--", "                 ", "--◥")
@@ -184,13 +195,10 @@ def continuaTablero(sudoku):
     if opcion == "0":
         return modValor(sudoku)
     elif opcion=="1":
-        HayCeros=0
-        for i in range(len(sudoku)):
-            for j in range(len(sudoku[0])):
-                if sudoku[i][j] == "0":
-                    HayCeros=True
-        if HayCeros:
+        if HayCeros(sudoku):
             Resolver_cifra(sudoku)
+            if HayCeros(sudoku):
+                print("No hay solución :c")
         else:
             print("Ya está resuelto :)")
         return continuaTablero(sudoku)

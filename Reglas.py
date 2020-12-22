@@ -40,8 +40,6 @@ def columnaCuadrante(cuadrante):
     elif cuadrante == 3 or cuadrante == 6 or cuadrante == 9:
         return [6, 7, 8]
 
-
-
 def RetornaPosiblesVertical(tabla, fila, columna):
     disponibles = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
     filas = len(tabla)
@@ -61,7 +59,6 @@ def RetornaPosiblesHorizontal(tabla, fila, columna):
             if valor in disponibles:  # si el valor que hemos leido esta en la lista
                 disponibles.remove(valor)  # lo borramos de la lista ya que no disponible
     return disponibles
-
 
 def RetornaPosiblesCuadrante(tabla, fila, columna):
     disponibles = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
