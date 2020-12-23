@@ -2,8 +2,8 @@ import json
 from Reglas import *
 import random
 
-matriz_nombres_guardados = []
-matriz_tableros_guardados = []
+matriz_nombres_guardados = list()
+matriz_tableros_guardados = list()
 
 if not VerificaExistencia("sudoku.json"):
     DBsudoku= open("sudoku.json","w+")
@@ -105,19 +105,18 @@ def Menu1():
     c=0
     for i in matriz_nombres_guardados:
         if matriz_tableros_guardados[c] != "vacío":
-            Clr.colorAlAzar(None)
+            Clr().colorAlAzar()
             print("\033[03m"+i+Clr.END)
-            Clr.END
             print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
         c += 1
 
-    NoEstaVacio=False
-
+    #Comprobar si no hay matrices
+    EstaVacio = True
     for i in matriz_tableros_guardados:
         if i!="vacío":
-            NoEstaVacio=True
+            EstaVacio=False
 
-    if not NoEstaVacio:
+    if EstaVacio:
         print("No hay tableros guardados")
         print("• (0) Desea volver al menú principal")
         print("• (1) Desea salir del juego?")
@@ -258,7 +257,7 @@ def cargaPartida():
 
 def borraPartida(nombre):
     IndexM = matriz_nombres_guardados.index(nombre)
-    matriz_tableros_guardados[IndexM] ="vacío"
+    matriz_tableros_guardados[IndexM] = "vacío"
     IntroduceJSON()
     return Menu1()
 

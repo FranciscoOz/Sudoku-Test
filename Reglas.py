@@ -25,20 +25,18 @@ def RetornaCuadrante(fila, columna):
         return 9
 
 def filaCuadrante(cuadrante):
-    if cuadrante == 1 or cuadrante == 2 or cuadrante == 3:
-        return [0, 1, 2]
-    elif cuadrante == 4 or cuadrante == 5 or cuadrante == 6:
-        return [3, 4, 5]
-    elif cuadrante == 7 or cuadrante == 8 or cuadrante == 9:
-        return [6, 7, 8]
+    filai = (cuadrante - 1) // 3
+    listaFila = []
+    for i in range(filai * 3, filai * 3 + 3):
+        listaFila.append(i)
+    return listaFila
 
 def columnaCuadrante(cuadrante):
-    if cuadrante == 1 or cuadrante == 4 or cuadrante == 7:
-        return [0, 1, 2]
-    elif cuadrante == 2 or cuadrante == 5 or cuadrante == 8:
-        return [3, 4, 5]
-    elif cuadrante == 3 or cuadrante == 6 or cuadrante == 9:
-        return [6, 7, 8]
+    columnai = (cuadrante - 1) // 3
+    columnaFila = []
+    for i in range(columnai * 3, columnai * 3 + 3):
+        columnaFila.append(i)
+    return columnaFila
 
 def RetornaPosiblesVertical(tabla, fila, columna):
     disponibles = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
