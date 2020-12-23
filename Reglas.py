@@ -76,14 +76,6 @@ def RetornaPosiblesCuadrante(tabla, fila, columna):
 
 # Actualizacion_1.5
 
-def VerificaExistencia(archivo):
-    try:
-        with open(archivo, 'r') as f:
-            return True
-    except FileNotFoundError as e:
-        return False
-    except IOError as e:
-        return False
 
 def Resolver_cifra(sudoku):
     encontrar = Encontrar_vacio(sudoku)

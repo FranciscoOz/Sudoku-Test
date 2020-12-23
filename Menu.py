@@ -5,6 +5,16 @@ import random
 matriz_nombres_guardados = list()
 matriz_tableros_guardados = list()
 
+
+def VerificaExistencia(archivo):
+    try:
+        with open(archivo, 'r') as f:
+            return True
+    except FileNotFoundError as e:
+        return False
+    except IOError as e:
+        return False
+
 if not VerificaExistencia("sudoku.json"):
     DBsudoku= open("sudoku.json","w+")
     dicNuevo =dict()
