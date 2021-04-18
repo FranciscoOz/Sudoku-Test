@@ -331,7 +331,7 @@ def RellenaCuadrante(tabla):
 def RellenaCeros(tabla, nivel):
     maxceros = 0
     if nivel == "1":
-        maxceros = 0
+        maxceros = 30
     elif nivel == "2":
         maxceros = 40
     elif nivel == "3":
